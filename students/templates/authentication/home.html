@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .alert {
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h3, h4 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .btn-container .btn {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message: </strong> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    
+    <h1>Welcome to the Student Management Portal!</h1>
+    
+    {% if user.is_authenticated %}
+    <h3>Hello {{ fname }}, welcome to the Portal!!</h3>
+    <h4>You are successfully logged in!</h4>
+    <button class="btn btn-primary" type="button"><a href="/signout" class="text-white">Sign Out</a></button>
+    {% else %}
+    <div class="btn-container">
+        <button class="btn btn-primary" type="button"><a href="/signin" class="text-white">Sign In</a></button>
+        <button class="btn btn-primary" type="button"><a href="/signup" class="text-white">Sign Up</a></button>
+    </div>
+    {% endif %}
+
+   

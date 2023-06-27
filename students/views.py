@@ -11,7 +11,7 @@ def index(request):
     return render(request, 'students/index.html',{'students': Student.objects.all() })
       
 def view_student(request, id ):
-    student= student.objects.get(pk=id)
+    student= Student.objects.get(pk=id)
     return HttpResponseRedirect(reverse('index'))
 
 def add(request):
@@ -24,6 +24,7 @@ def add(request):
             new_email = form.cleaned_data['email']
             new_field_of_study = form.cleaned_data['field_of_study']
             new_gpa = form.cleaned_data['gpa']
+            new_college = form.cleaned_data['college']
 
             new_student = Student(
                 student_number=new_student_number,
@@ -32,6 +33,7 @@ def add(request):
                 email=new_email,
                 field_of_study=new_field_of_study,
                 gpa=new_gpa,
+                college=new_college
             )
 
             new_student.save()
@@ -48,9 +50,13 @@ def add(request):
 def edit(request, id):
     if request.method == 'POST':
         student = Student.objects.get(pk=id)
-        form = StudentForm(request.POST, instace=student)
+        existing_college = student.college
+        form = StudentForm(request.POST, instance=student, initial={'college': existing_college})
         if form.is_valid():
             form.save()
+            student.college = form.cleaned_data['college']
+            student.save()
+            
             return render(request, 'students/edit.html',{
                 'form':form,
                 'success': True,

@@ -20,20 +20,20 @@
                             <th scope="col">Email</th>
                             <th scope="col">Field of Study</th>
                             <th scope="col">GPA</th>
+                            <th scope="col">College</th>
                             <th scope="col">Actions</th>
                           </tr>
                         </thead>
                         <tbody>
                             {% for student in students %}
                             <tr>
-                                <td>
-                                    {{ student.student_number }}
-                                </td>
+                                <td>{{ student.student_number }}</td>
                                 <td>{{ student.first_name }}</td>
                                 <td>{{ student.last_name }}</td>
                                 <td>{{ student.email }}</td>
                                 <td>{{ student.field_of_study }}</td>
                                 <td>{{ student.gpa }}</td>
+                                <td>{{ student.college }}</td>
                                 <td>
                                     <button type="button" class="btn btn-success me-1" href="{% url 'view_student' student.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{student.id}}" >
                                       <i class="fa-solid fa-circle-info"></i>                                                
@@ -56,6 +56,9 @@
                                                 <li> E-mail:<strong>{{ student.email }}</strong></li>
                                                 <li> Field Of Study:<strong>{{ student.field_of_study }}</strong></li>
                                                 <li> GPA:<strong>{{ student.gpa }}</strong></li>
+                                                
+                                                
+                                                <li> College:<strong>{{ student.college }}</strong></li>
 
                                               </ul>
                                             </div>

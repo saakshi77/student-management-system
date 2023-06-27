@@ -1,17 +1,19 @@
 from django import forms
-from .models import Student
+from .models import Student,College
 
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields= ('student_number','first_name', 'last_name', 'email','field_of_study', 'gpa')
+        fields= ('student_number','first_name', 'last_name', 'email','field_of_study', 'gpa','college')
         labels= {
              'student_number': 'Student Number',
              'first_name':'First Name',
              'last_name':'Last Name',
              'email':'Email',
              'field_of_study':'Field Of Study',
-             'gpa': 'GPA'}
+             'gpa': 'GPA'
+             
+              }
         widgets={
             'student_number': forms.NumberInput(attrs={'class':'form-control'}),
             'first_name': forms.TextInput(attrs={'class':'form-control'}), 
@@ -19,4 +21,5 @@ class StudentForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class':'form-control'}),
             'field_of_study': forms.TextInput(attrs={'class':'form-control'}), 
             'gpa':forms.NumberInput(attrs={'class':'form-control'}),
+            'college': forms.Select(attrs={'class': 'form-control'})
         }

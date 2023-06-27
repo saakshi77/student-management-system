@@ -1,0 +1,6 @@
+this proj contains the combination of gfg authorization and the student management system.
+seting.py updated 
+urls.py updated 
+authorization -- working
+student mmgmt -- working 
+pressing signout displays student mgmt home pg.
